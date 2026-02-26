@@ -1,4 +1,4 @@
-import React, {useCallback, useMemo, useRef, useState} from 'react'
+import React, {useCallback, useRef, useState} from 'react'
 import {useOutletContext} from "react-router";
 import {CheckCircle2, ImageIcon, UploadIcon} from "lucide-react";
 import {PROGRESS_INTERVAL_MS, PROGRESS_STEP, REDIRECT_DELAY_MS} from "../lib/constants";
@@ -64,6 +64,8 @@ const Upload = ({ onComplete }: UploadProps) => {
             }
         };
         reader.onerror = () => {
+            setFile(null);
+            setProgress(0);
             clearProgressInterval();
         };
         reader.readAsDataURL(f);
@@ -140,7 +142,7 @@ const Upload = ({ onComplete }: UploadProps) => {
                             {isSignedIn ? (
                                 "Click to upload or drag and drop"
                             ):(
-                                "Sign in or sign up to upload"
+                                "Sign in to upload"
                             )}
                         </p>
                         <p className="help">Maximum file size 50 MB.</p>

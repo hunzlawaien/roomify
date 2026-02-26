@@ -10,7 +10,7 @@ import {
 import type { Route } from "./+types/root";
 import "./app.css";
 import {useEffect, useState} from "react";
-import {getCurrentUser, signIn as puterSignIn, signUp as puterSignUp, signOut as puterSignOut} from "../lib/puter.action";
+import {getCurrentUser, signIn as puterSignIn, signOut as puterSignOut} from "../lib/puter.action";
 
 export const links: Route.LinksFunction = () => [
   { rel: "preconnect", href: "https://fonts.googleapis.com" },
@@ -77,11 +77,6 @@ export default function App() {
        return await refreshAuth();
    }
 
-   const signUp = async () => {
-       await puterSignUp();
-       return await refreshAuth();
-   }
-
     const signOut = async () => {
         await puterSignOut();
         return await refreshAuth();
@@ -90,7 +85,7 @@ export default function App() {
     return (
         <main className="min-h-screen bg-background text-foreground relative z-10">
         <Outlet
-            context={{...authState, refreshAuth,signIn,signUp,signOut}}
+            context={{...authState, refreshAuth,signIn,signOut}}
     />;
     </main>
 )
