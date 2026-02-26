@@ -3,7 +3,7 @@ import Button from "./ui/Button";
 import {useOutletContext} from "react-router";
 
 const Navbar = () => {
-    const {isSignedIn, userName, signIn, signUp, signOut} = useOutletContext<AuthContext>()
+    const {isSignedIn, userName, signIn, signOut} = useOutletContext<AuthContext>()
     const handleAuthClick = async () => {
         if(isSignedIn){
             try {
@@ -12,20 +12,14 @@ const Navbar = () => {
                 console.error(`Sign out error: ${e}`);
             }
             return;
-    }
+        }
         try {
             await signIn();
         }catch (e) {
-        console.error(`Sign in error: ${e}`);}
-    };
-
-    const handleSignUpClick = async () => {
-        try {
-            await signUp();
-        } catch (e) {
-            console.error(`Sign up error: ${e}`);
+            console.error(`Sign in error: ${e}`);
         }
     };
+
     return (
         <header className="navbar">
             <nav className="inner">
@@ -56,7 +50,6 @@ const Navbar = () => {
                     ):(
                         <>
                             <Button onClick={handleAuthClick} size={"sm"} variant={"ghost"}>Log In</Button>
-                            <Button onClick={handleSignUpClick} size={"sm"} className="cta">Sign Up</Button>
                         </>
 
                     )}
