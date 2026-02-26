@@ -21,7 +21,7 @@ export const createProject = async ({ item }: CreateProjectParams):
     const hosting = await getOrCreateHostingConfig();
 
     const hostedSource = projectId ?
-        await uploadImageToHosting({hosting, url: item.sourceImage, projectId,label:'rendered'}):null;
+        await uploadImageToHosting({hosting, url: item.sourceImage, projectId,label:'source'}):null;
     const hostedRender = projectId && item.renderedImage ?
         await uploadImageToHosting({hosting, url: item.renderedImage, projectId, label:'rendered'}):null;
 
